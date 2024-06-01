@@ -65,7 +65,6 @@ public class InkScenary : MonoBehaviour
         story = new Story(text.text);
         Action();
     }
-    // Update is called once per frame
     public void Action()
     {
         
