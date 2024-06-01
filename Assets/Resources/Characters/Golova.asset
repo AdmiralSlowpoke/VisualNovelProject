@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7663bb04cd76ce647a9265370544fef5, type: 3}
+  m_Name: Golova
+  m_EditorClassIdentifier: 
+  characterName: "\u0413\u043E\u043B\u043E\u0432\u0430"
+  characterMoods:
+  - characterReactionName: Funny
+    characterReactionImage: {fileID: 21300000, guid: a507091859992a841acf3d9ff4b734eb, type: 3}
+  - characterReactionName: IDLE
+    characterReactionImage: {fileID: 21300000, guid: 38c87ee5734cc1142bbf41a3d317cb8b, type: 3}
+  - characterReactionName: Scary
+    characterReactionImage: {fileID: 21300000, guid: dce4c48a9dd50af41b63968b14be1a09, type: 3}
+  - characterReactionName: Scary2
+    characterReactionImage: {fileID: 21300000, guid: 409dd8e548bf6594791ac2218dea0312, type: 3}
+  - characterReactionName: Scary3
+    characterReactionImage: {fileID: 21300000, guid: 8a6ac69537eea884987f2d8475def817, type: 3}
+  - characterReactionName: Scary4
+    characterReactionImage: {fileID: 21300000, guid: 67c5130703706514a9c7155228928ca9, type: 3}
+  - characterReactionName: Talk
+    characterReactionImage: {fileID: 21300000, guid: bb9fa4dc0d3851a4a9ebeb29d1e02a7d, type: 3}

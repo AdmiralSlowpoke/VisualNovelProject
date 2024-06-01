@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7663bb04cd76ce647a9265370544fef5, type: 3}
+  m_Name: Bakula
+  m_EditorClassIdentifier: 
+  characterName: "\u0412\u0430\u043A\u0443\u043B\u0430"
+  characterMoods:
+  - characterReactionName: Angry
+    characterReactionImage: {fileID: 21300000, guid: 9e9b8490e26948c408352a7d4c7e86de, type: 3}
+  - characterReactionName: Angry2
+    characterReactionImage: {fileID: 21300000, guid: e7c11fafbc16b6843a6800636fb3ff51, type: 3}
+  - characterReactionName: Angry3
+    characterReactionImage: {fileID: 21300000, guid: f458972a0656c9b47bb50953f0ddd352, type: 3}
+  - characterReactionName: Funny
+    characterReactionImage: {fileID: 21300000, guid: 796412d3695951f4daef85f078b82c77, type: 3}
+  - characterReactionName: IDLE
+    characterReactionImage: {fileID: 21300000, guid: 2ab29aa1799214c41bf9757ee272e0dc, type: 3}
+  - characterReactionName: Sad
+    characterReactionImage: {fileID: 21300000, guid: 815a7b7ae3ee812479c050a5168bdf8a, type: 3}
+  - characterReactionName: Sad2
+    characterReactionImage: {fileID: 21300000, guid: 55b9ddc156fff8b4b83df27524d38667, type: 3}
+  - characterReactionName: Talk
+    characterReactionImage: {fileID: 21300000, guid: dcbcc34b2fb0bc6499bfcfee79406963, type: 3}
+  - characterReactionName: Think
+    characterReactionImage: {fileID: 21300000, guid: bca2bc20a0fa0514f810b6b68fc1d4b7, type: 3}
+  - characterReactionName: Think2
+    characterReactionImage: {fileID: 21300000, guid: e279baa4a1f781c408a87908fb0f1472, type: 3}
+  - characterReactionName: Think3
+    characterReactionImage: {fileID: 21300000, guid: dfa3cd9b5719a544ba469e8377ce8af1, type: 3}
