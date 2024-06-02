@@ -12,7 +12,7 @@ public class InkScenary : MonoBehaviour
     public Button prefabButton;
     public GameObject buttonLocation;
     public Story story;
-    public Text charNameText, charText;
+    public TextMeshProUGUI charNameText, charText;
     public CharacterSO Bakula, Chert, Chub, Dyak, Golova, Oksana, Pacuk, Soloha, Sverbiguz;
     [SerializeField]
     private TextAsset text;
@@ -22,8 +22,8 @@ public class InkScenary : MonoBehaviour
         public static Dictionary<string, CharacterSO> characters = new Dictionary<string, CharacterSO>();
         public static Dictionary<string, BackGroundSO> backgrounds = new Dictionary<string, BackGroundSO>();
         public static bool clickWait = false;
-        public static Text charNameText;
-        public static Text charText;
+        public static TextMeshProUGUI charNameText;
+        public static TextMeshProUGUI charText;
         public static List<GameObject> charactersImages = new List<GameObject>();
         public static Image backgroundImage;
         public static AudioSource music;
@@ -42,8 +42,8 @@ public class InkScenary : MonoBehaviour
         {
             AllData.backgrounds.Add(background.backgroundName, background);
         }
-        AllData.charNameText = GameObject.Find("CharName").GetComponent<Text>();
-        AllData.charText = GameObject.Find("CharText").GetComponentInChildren<Text>();
+        AllData.charNameText = GameObject.Find("CharName").GetComponent<TextMeshProUGUI>();
+        AllData.charText = GameObject.Find("CharText").GetComponentInChildren<TextMeshProUGUI>();
         AllData.charactersImages.Add(GameObject.Find("Character"));
         AllData.charactersImages.Add(GameObject.Find("Character1"));
         foreach (GameObject character in AllData.charactersImages)
