@@ -18,3 +18,4 @@ MonoBehaviour:
     characterReactionImage: {fileID: 21300000, guid: 9ffa4208ac211174fbbc008a2c27e09d, type: 3}
   - characterReactionName: IDLE
     characterReactionImage: {fileID: 21300000, guid: fdbf2290c60a13841957356e16bc72fe, type: 3}
+  characterSize: {x: 740, y: 888}

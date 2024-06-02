@@ -125,23 +125,23 @@ public class InkScenary : MonoBehaviour
             {
                 case string a when a.Contains("speaker"):
                     speakerTag = tag.Replace("speaker: ", ""); ;
-                    Debug.Log($"Персонаж {speakerTag}");
+                    //Debug.Log($"Персонаж {speakerTag}");
                     break;
                 case string a when a.Contains("emotion"):
                     emotionTag = tag.Replace("emotion: ", "");
-                    Debug.Log($"Эмоция {emotionTag}");
+                    //Debug.Log($"Эмоция {emotionTag}");
                     break;
                 case string a when a.Contains("звук"):
                     soundTag = tag.Replace("звук: ","");
-                    Debug.Log($"Звук {soundTag}");
+                    //Debug.Log($"Звук {soundTag}");
                     break;
                 case string a when a.Contains("enter"):
                     enterTag= tag.Replace("enter: ", "");
-                    Debug.Log($"Вошел {enterTag}");
+                    //Debug.Log($"Вошел {enterTag}");
                     break;
                 case string a when a.Contains("leave"):
                     leaveTag = tag.Replace("leave: ", "");
-                    Debug.Log($"Вышел {leaveTag}");
+                    //Debug.Log($"Вышел {leaveTag}");
                     break;
             }
         }
@@ -153,8 +153,10 @@ public class InkScenary : MonoBehaviour
             CharacterMood charMood = emotionTag != "" ? characterSO.characterMoods.Find(x => x.characterReactionName == emotionTag) : characterSO.characterMoods.Find(x => x.characterReactionName == "IDLE");
             if (charMood != null)
             {
+                Debug.Log(AllData.characters[character].characterSize);
                 AllData.charactersImages[0].SetActive(true);
                 AllData.charactersImages[0].GetComponent<Image>().sprite = charMood.characterReactionImage;
+                AllData.charactersImages[0].GetComponent<RectTransform>().sizeDelta = AllData.characters[character].characterSize;
             }
             else
             {
