@@ -16,7 +16,7 @@
 Ох уж эти парубки! А давеча кузнец... Да что это я, право? #speaker: Oksana
 Нет! Хороша я, хороша! Ну, просто чудо, как я хороша! #speaker: Oksana #emotion: Funny
 //ЗАХОДИТ ВАКУЛА #звук:стуквдверь
-Чудная, ненаглядная моя Оксана! #enter: Bakula #speaker: Bakula 
+Чудная, ненаглядная моя Оксана! #enter: Bakula #speaker: Bakula #emotion: Funny
 А ты как тут?! #speaker: Oksana #emotion: Scared #звук:оксанаохает
 //ЗА ОКНОМ ПОЯВЛЯЮТСЯ КОЛЯДУЮЩИЕ
 //1
@@ -33,8 +33,8 @@
 Пошли! #speaker: Kolads5
 
 Нет у меня новых черевичков. Да и подарить-то видать некому... #speaker: Oksana #emotion: Sad
-Не тужи, ненаглядная Оксана! #speaker: Bakula
-Я тебе достану черевички, какие редкая панночка носит! #speaker: Bakula
+Не тужи, ненаглядная Оксана! #speaker: Bakula #emotion: Think
+Я тебе достану черевички, какие редкая панночка носит! #speaker: Bakula #emotion: Funny
 
 Ты? Черевички? #speaker: Oksana #emotion: Funny #звук:смехоксаны
 А достань черевички, что сама царица носит, может, я и замуж за тебя выйду! #speaker: Oksana

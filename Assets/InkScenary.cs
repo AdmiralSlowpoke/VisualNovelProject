@@ -141,11 +141,29 @@ public class InkScenary : MonoBehaviour
                     break;
                 case string a when a.Contains("leave"):
                     leaveTag = tag.Replace("leave: ", "");
-                    //Debug.Log($"Вышел {leaveTag}");
+                    Debug.Log($"Вышел {leaveTag}");
                     break;
             }
         }
+        if (enterTag != "")
+        {
+            CharacterEnter(AllData.characters[enterTag]);
+        }
         if (speakerTag != "")
+        {
+            AllData.charNameText.text = AllData.characters[speakerTag].characterName;
+            //CharacterSpeak(AllData.characters[speakerTag]);
+        }
+        if (emotionTag != "")
+        {
+            Debug.Log($"{speakerTag}:{emotionTag}");
+            CharacterChangeMood(AllData.characters[speakerTag], emotionTag);
+        }
+        if (leaveTag != "")
+        {
+            CharacterLeave(AllData.characters[leaveTag]);
+        }
+        /*if (speakerTag != "")
         {
             string character = speakerTag;
             AllData.charNameText.text = AllData.characters[character].characterName;
@@ -162,7 +180,56 @@ public class InkScenary : MonoBehaviour
             {
                 AllData.charactersImages[0].SetActive(false);
             }
+        }*/
+    }
+    private void CharacterEnter(CharacterSO character)
+    {
+        foreach (GameObject image in AllData.charactersImages)
+        {
+            if (!image.activeSelf)
+            {
+                image.SetActive(true);
+                image.GetComponent<CharacterSOContainer>().characterContainer = character;
+                image.GetComponent<RectTransform>().sizeDelta = character.characterSize;
+                image.GetComponent<Image>().sprite = character.characterMoods.Find(x=>x.characterReactionName=="IDLE").characterReactionImage;
+                if (character.characterName == "Вакула")
+                {
+                    RectTransform rect = image.GetComponent<RectTransform>();
+                    rect.localScale = new Vector3(-1, 1, 1);
+                    rect.position = new Vector3(rect.position.x + AllData.characters["Bakula"].characterSize.x, rect.position.y, rect.position.z);
+                }
+                break;
+            }
         }
+    }
+    private void CharacterSpeak(CharacterSO character)
+    {
+        foreach(GameObject image in AllData.charactersImages)
+        {
+            if (image.activeSelf && image.GetComponent<CharacterSO>().characterName == character.characterName)
+            {
+                image.GetComponent<Image>().sprite= character.characterMoods.Find(x => x.characterReactionName == "Talk").characterReactionImage;
+            }
+        }
+    }
+    private void CharacterChangeMood(CharacterSO character, string mood)
+    {
+        foreach(GameObject obj in AllData.charactersImages)
+        {
+            if (obj.activeSelf)
+            {
+                if (obj.GetComponent<CharacterSOContainer>().characterContainer.characterName == character.characterName)
+                {
+                    obj.GetComponent<CharacterSOContainer>().SetCharacterExpression(mood);
+                }
+            }
+        }
+    }
+    private void CharacterLeave(CharacterSO character)
+    {
+        GameObject charImage = AllData.charactersImages.Find(x => x.GetComponent<CharacterSOContainer>().characterContainer.characterName == character.characterName);
+        charImage.GetComponent<CharacterSOContainer>().characterContainer = null;
+        charImage.SetActive(false);
     }
     IEnumerator AppearingText(string text)
     {
