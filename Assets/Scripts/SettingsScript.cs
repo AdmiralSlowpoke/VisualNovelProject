@@ -21,6 +21,8 @@ public class SettingsScript : MonoBehaviour
     {
        audioMixer.SetFloat("volume", volume);
     }
+    
+  
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name == "MainMenuSettings")
@@ -28,4 +30,5 @@ public class SettingsScript : MonoBehaviour
             SceneManager.LoadScene("MainMenu");
         }
     }
+
 }

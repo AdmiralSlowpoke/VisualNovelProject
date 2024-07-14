@@ -13,20 +13,21 @@ public class DictScript : MonoBehaviour
     }
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.D)) 
+        
+        if (Input.GetKeyDown(KeyCode.D) && !IsOpen)
         {
-            if (!IsOpen)
-            {
-                dict.SetActive(true);
-                IsOpen = true;
-            }
-            else
-            {
-                dict.SetActive(false);
-                IsOpen = false;
-            }
-
+            dict.SetActive(true);
+            IsOpen = true;
+            Time.timeScale = 0f;
         }
+        if ((Input.GetKeyDown(KeyCode.D)|| Input.GetKeyDown(KeyCode.Escape)) && !IsOpen)
+        {
+            dict.SetActive(false);
+            IsOpen = false;
+            Time.timeScale = 1f;
+        }
+
+        
         
     }
     public void OnClickDict()

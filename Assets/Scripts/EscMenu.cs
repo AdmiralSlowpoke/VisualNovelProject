@@ -6,23 +6,61 @@ using UnityEngine;
 public class EscMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
+    bool IsOpen = false;
+
     public GameObject pauseUI;
+    public GameObject dict;
+    public GameObject settings;
+    
+
+
+    private void Start()
+    {
+
+        pauseUI.SetActive(false);
+        dict.SetActive(false);
+        settings.SetActive(false);
+    }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (GameIsPaused) 
+            if (GameIsPaused && dict.activeSelf == false)
             {
                 Resume();
             }
-            else
+            else if(dict.activeSelf == false)
             {
                 Pause();
             }
-
+            if (dict.activeSelf == true)
+            {
+                dict.SetActive(false);
+                IsOpen = false;
+                Time.timeScale = 1f;
+            }
         }
-        
+
+
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            if (!IsOpen)
+            {
+                dict.SetActive(true);
+                IsOpen = true;
+                Time.timeScale = 0f;
+            }
+            else
+            {
+                dict.SetActive(false);
+                IsOpen = false;
+                Time.timeScale = 1f;
+            }
+        }
+       
+      
+
     }
     private void Pause()
     {
@@ -36,5 +74,26 @@ public class EscMenu : MonoBehaviour
         Time.timeScale = 1f;
         GameIsPaused = false;
     }
-    
+
+    public void OnClickDict()
+    {
+        dict.SetActive(true);
+        IsOpen = true;
+    }
+
+    public void OnClickExitDict()
+    {
+        dict.SetActive(false);
+        IsOpen = false;
+    }
+
+    public void OnClickSettings()
+    {
+        settings.SetActive(true);
+    }
+    public void OnClickExitSettings()
+    {
+        settings.SetActive(false);
+    }
+
 }
