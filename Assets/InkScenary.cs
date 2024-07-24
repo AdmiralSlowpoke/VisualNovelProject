@@ -119,6 +119,7 @@ public class InkScenary : MonoBehaviour
         string soundTag = "";
         string enterTag = "";
         string leaveTag = "";
+        string backgroundTag = "";
         foreach(string tag in currentTags)
         {
             switch (tag)
@@ -143,7 +144,16 @@ public class InkScenary : MonoBehaviour
                     leaveTag = tag.Replace("leave: ", "");
                     Debug.Log($"Вышел {leaveTag}");
                     break;
+                case string a when a.Contains("фон"):
+                    backgroundTag = tag.Replace("фон: ", "");
+                    break;
+
             }
+        }
+        if (backgroundTag != "")
+        {
+            Debug.Log($"Background/{backgroundTag}");
+            AllData.backgroundImage.sprite = Resources.Load<Sprite>($"Backgrounds/{backgroundTag}");
         }
         if (soundTag != "")
         {
