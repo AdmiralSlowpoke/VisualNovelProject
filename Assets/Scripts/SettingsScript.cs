@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class SettingsScript : MonoBehaviour
 {
     public AudioMixer audioMixer;
+    public static float textSpeed=0.03f;
     public void SetFullScreen() 
     {
         Screen.fullScreen = true;
@@ -19,7 +20,12 @@ public class SettingsScript : MonoBehaviour
 
     public void SetVolume(float volume) 
     {
-       audioMixer.SetFloat("volume", volume);
+       Debug.Log(volume);
+       audioMixer.SetFloat("MusicVolume", volume);
+    }
+    public void SetTextSpeed(float speed)
+    {
+        textSpeed = Mathf.Abs(speed);
     }
     
   

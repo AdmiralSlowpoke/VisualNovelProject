@@ -1,23 +1,22 @@
 //ПЕРВАЯ СЦЕНА
 //ЛУННАЯ НОЧЬ. ХУТОР
 #enter: Chub
-#enter: Oksana
-Ишь, как морозит! Сильнее, чем с утра! На небе, аж, звезды высветило! #speaker: Chub #emotion: Think
-Да и ночь не простая, а перед самым Рождеством! #speaker: Oksana #emotion: Funny
+Ишь, как морозит! Сильнее, чем с утра! На небе, аж, звезды высветило! #speaker: Chub #emotion: Think 
+Да и ночь не простая, а перед самым Рождеством! #enter: Oksana #speaker: Oksana #emotion: Funny
 Чу! Слышь, как поют? То девки и парубки гуляют! Эх! Мне бы годков так... сбросить. Эх…я бы #speaker: Chub #emotion: Funny
 //ЗА ОКНОМ ПОЯВЛЯЕТСЯ СВЕРБЫГУЗ
-#leave:Chub
-#leave:Oksana
-#enter: Sverbiguz
-#enter:  Golova
+//#leave:Chub
+//#leave:Oksana
+//#enter: Sverbiguz
+//#enter:  Golova
 Эй, Чуб, где ты запропастился? #speaker: Sverbiguz
 С вечера были званы к дьяку на праздник. Пора бы уж! #speaker: Golova
-#leave:Golova
-#enter: Chub
+//#leave:Golova
+//#enter: Chub
 Иду! Иду! #speaker: Chub
 Ишь, как высветлило ... #speaker: Chub
-#leave:Chub
-#leave:Sverbiguz
+//#leave:Chub
+//#leave:Sverbiguz
 #звук:скрипдвери
 //ВТОРАЯ СЦЕНА
 Ах, хороша я, хороша! Ну, просто чудо, как хороша! #speaker: Oksana #звук:смехоксаны
@@ -26,10 +25,9 @@
 Ох уж эти парубки! А давеча кузнец... Да что это я, право? #speaker: Oksana #звук:смехоксаны2
 Нет! Хороша я, хороша! Ну, просто чудо, как я хороша! #speaker: Oksana
 //
-#звук:стуквдверь #enter:Vakula #enter:Oksana
+//#звук:стуквдверь #enter:Vakula #enter:Oksana
 Чудная, ненаглядная моя Оксана! #speaker: Bakula #звук:оксанаохает
-
-А ты как тут?! #speaker: Oksana emotion: Scared
+А ты как тут?! #speaker: Oksana #emotion: Scared
 //ЗА ОКНОМ ПОЯВЛЯЮТСЯ КОЛЯДУЮЩИЕ
 //1
 Ой! Оксана, что ты дома сидишь? #speaker: Kolads1 #звук:Колядки1

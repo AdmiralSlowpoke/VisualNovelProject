@@ -89,7 +89,7 @@ public class InkScenary : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && story.canContinue && !textRunning) Action();
+        if (Input.GetMouseButtonDown(0) && !EscMenu.GameIsPaused && story.canContinue && !textRunning) Action();
         else if (Input.GetMouseButtonDown(0) && textRunning)
         {
             StopAllCoroutines();
@@ -132,7 +132,7 @@ public class InkScenary : MonoBehaviour
                     //Debug.Log($"Эмоция {emotionTag}");
                     break;
                 case string a when a.Contains("звук"):
-                    soundTag = tag.Replace("звук: ","");
+                    soundTag = tag.Replace("звук:","");
                     //Debug.Log($"Звук {soundTag}");
                     break;
                 case string a when a.Contains("enter"):
@@ -144,6 +144,12 @@ public class InkScenary : MonoBehaviour
                     Debug.Log($"Вышел {leaveTag}");
                     break;
             }
+        }
+        if (soundTag != "")
+        {
+            Debug.Log($"Audio/{soundTag}");
+            Debug.Log(Resources.Load<AudioClip>($"Audio/{soundTag}"));
+            AllData.sfx.PlayOneShot(Resources.Load<AudioClip>($"Audio/{soundTag}"));
         }
         if (enterTag != "")
         {
@@ -182,6 +188,7 @@ public class InkScenary : MonoBehaviour
             }
         }*/
     }
+
     private void CharacterEnter(CharacterSO character)
     {
         foreach (GameObject image in AllData.charactersImages)
@@ -239,7 +246,7 @@ public class InkScenary : MonoBehaviour
         {
             temp += text[i];
             AllData.charText.text = temp;
-            yield return new WaitForSeconds(0.03f);
+            yield return new WaitForSeconds(SettingsScript.textSpeed);
         }
         textRunning = false;
     }

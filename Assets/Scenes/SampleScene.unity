@@ -1261,6 +1261,22 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 655753152532208806, guid: c480df971dbfe1f4b98348d9c5fb0d2e, type: 3}
+      propertyPath: m_Value
+      value: -0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 655753152532208806, guid: c480df971dbfe1f4b98348d9c5fb0d2e, type: 3}
+      propertyPath: m_MaxValue
+      value: -0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 655753152532208806, guid: c480df971dbfe1f4b98348d9c5fb0d2e, type: 3}
+      propertyPath: m_MinValue
+      value: -0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 655753152532208806, guid: c480df971dbfe1f4b98348d9c5fb0d2e, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetTextSpeed
+      objectReference: {fileID: 0}
     - target: {fileID: 772171406203009062, guid: c480df971dbfe1f4b98348d9c5fb0d2e, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -1441,6 +1457,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3768573105050647502, guid: c480df971dbfe1f4b98348d9c5fb0d2e, type: 3}
+      propertyPath: audioMixer
+      value: 
+      objectReference: {fileID: 24100000, guid: 712cf37cc28a7bf4fb17f70bf586e128, type: 2}
     - target: {fileID: 3768573105050647506, guid: c480df971dbfe1f4b98348d9c5fb0d2e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1544,6 +1564,14 @@ PrefabInstance:
     - target: {fileID: 3768573105113778933, guid: c480df971dbfe1f4b98348d9c5fb0d2e, type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3768573105160324752, guid: c480df971dbfe1f4b98348d9c5fb0d2e, type: 3}
+      propertyPath: m_Value
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3768573105160324752, guid: c480df971dbfe1f4b98348d9c5fb0d2e, type: 3}
+      propertyPath: m_MaxValue
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3768573105160324753, guid: c480df971dbfe1f4b98348d9c5fb0d2e, type: 3}
       propertyPath: m_AnchorMax.y
@@ -3071,7 +3099,7 @@ MonoBehaviour:
   Pacuk: {fileID: 11400000, guid: 713bbbe86249b2149af135b301ad63a5, type: 2}
   Soloha: {fileID: 11400000, guid: 6a0cf36d684e88d43b4c60b45e880a14, type: 2}
   Sverbiguz: {fileID: 11400000, guid: 7fed71d4416a32a45aa0ccbebbd8df85, type: 2}
-  text: {fileID: 4900000, guid: 6de4567a696a67348ab531219ac1be87, type: 3}
+  text: {fileID: 4900000, guid: 58292e1fef0c44d489aa86482201821c, type: 3}
 --- !u!114 &1989451544
 MonoBehaviour:
   m_ObjectHideFlags: 0
