@@ -21,7 +21,7 @@ public class SettingsScript : MonoBehaviour
     public void SetVolume(float volume) 
     {
        Debug.Log(volume);
-       audioMixer.SetFloat("MusicVolume", volume);
+       audioMixer.SetFloat("MasterVolume", volume);
     }
     public void SetTextSpeed(float speed)
     {
