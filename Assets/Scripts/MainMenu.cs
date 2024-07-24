@@ -4,11 +4,9 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public GameObject canvasSettings;
-    public int canvasSettingOn;
 
     public void Start()
     {
-        canvasSettingOn = 0;
         canvasSettings.SetActive(false);
     }
 
@@ -16,7 +14,7 @@ public class MainMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            
+            canvasSettings.SetActive(false);
         }
     }
 
@@ -32,12 +30,13 @@ public class MainMenu : MonoBehaviour
     }
     public void Awake()
     {
-        canvasSettings = GameObject.Find("SettingsCanvas");
+        canvasSettings = GameObject.Find("BGSettings");
     }
 
     public void OnClickSettings()
     {
-        if (canvasSettingOn ==0 )
+      
+        if(canvasSettings.activeSelf == false)
         {
             canvasSettings.SetActive(true);
         }

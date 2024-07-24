@@ -2,15 +2,19 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EscMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
     bool IsOpen = false;
+    int variantExit;
 
     public GameObject pauseUI;
     public GameObject dict;
     public GameObject settings;
+    public GameObject load;
+    public GameObject exitScreen;
     
 
 
@@ -20,17 +24,19 @@ public class EscMenu : MonoBehaviour
         pauseUI.SetActive(false);
         dict.SetActive(false);
         settings.SetActive(false);
+        load.SetActive(false);
+        exitScreen.SetActive(false);
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (GameIsPaused && dict.activeSelf == false)
+            if (GameIsPaused && dict.activeSelf == false && settings.activeSelf == false && load.activeSelf == false)
             {
                 Resume();
             }
-            else if(dict.activeSelf == false)
+            else if(dict.activeSelf == false && settings.activeSelf == false && load.activeSelf == false)
             {
                 Pause();
             }
@@ -39,6 +45,14 @@ public class EscMenu : MonoBehaviour
                 dict.SetActive(false);
                 IsOpen = false;
                 Time.timeScale = 1f;
+            }
+            if(settings.activeSelf == true)
+            {
+                settings.SetActive(false);
+            }
+            if (load.activeSelf == true)
+            {
+                load.SetActive(false);
             }
         }
 
@@ -77,23 +91,66 @@ public class EscMenu : MonoBehaviour
 
     public void OnClickDict()
     {
-        dict.SetActive(true);
-        IsOpen = true;
-    }
-
-    public void OnClickExitDict()
-    {
-        dict.SetActive(false);
-        IsOpen = false;
+        if(dict.activeSelf == false)
+        {
+            dict.SetActive(true);
+        }
+        else
+        {
+            dict.SetActive(false);
+        }
     }
 
     public void OnClickSettings()
     {
-        settings.SetActive(true);
+        if (settings.activeSelf == false)
+        {
+            settings.SetActive(true);
+        }
+        else
+        {
+            settings.SetActive(false);
+        }
     }
-    public void OnClickExitSettings()
+    public void OnClickLoad()
     {
-        settings.SetActive(false);
+        if(load.activeSelf == false)
+        {
+            load.SetActive(true);
+        }
+        else
+        {
+            load.SetActive(false);
+        }
+      
     }
 
+    public void AgreeButtonMain()
+    {
+        if(variantExit == 1)
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
+        else
+        {
+            Application.Quit();
+            Debug.Log("Игра закрыта");
+        }
+        
+    }
+    public void DisagreeButton()
+    {
+        exitScreen.SetActive(false);
+    }
+    public void QuitGame()
+    {
+        exitScreen.SetActive(true);
+        variantExit = 0;
+
+    }
+    public void ExitMainMenu()
+    {
+        exitScreen.SetActive(true);
+        variantExit = 1;
+    }
 }
