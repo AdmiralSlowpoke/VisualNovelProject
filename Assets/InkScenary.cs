@@ -125,31 +125,38 @@ public class InkScenary : MonoBehaviour
             switch (tag)
             {
                 case string a when a.Contains("speaker"):
-                    speakerTag = tag.Replace("speaker: ", ""); ;
+                    speakerTag = tag.Replace("speaker: ", "");
+                    AllData.charNameText.text = AllData.characters[speakerTag].characterName;
                     //Debug.Log($"Персонаж {speakerTag}");
                     break;
                 case string a when a.Contains("emotion"):
                     emotionTag = tag.Replace("emotion: ", "");
+                    CharacterChangeMood(AllData.characters[speakerTag], emotionTag);
                     //Debug.Log($"Эмоция {emotionTag}");
                     break;
                 case string a when a.Contains("звук"):
-                    soundTag = tag.Replace("звук:","");
+                    soundTag = tag.Replace("звук: ","");
+                    AllData.sfx.PlayOneShot(Resources.Load<AudioClip>($"Audio/{soundTag}"));
                     //Debug.Log($"Звук {soundTag}");
                     break;
                 case string a when a.Contains("enter"):
                     enterTag= tag.Replace("enter: ", "");
+                    CharacterEnter(AllData.characters[enterTag]);
                     //Debug.Log($"Вошел {enterTag}");
                     break;
                 case string a when a.Contains("leave"):
                     leaveTag = tag.Replace("leave: ", "");
+                    CharacterLeave(AllData.characters[leaveTag]);
                     Debug.Log($"Вышел {leaveTag}");
                     break;
                 case string a when a.Contains("фон"):
                     backgroundTag = tag.Replace("фон: ", "");
+                    AllData.backgroundImage.sprite = Resources.Load<Sprite>($"Backgrounds/{backgroundTag}");
                     break;
 
             }
         }
+        /*
         if (backgroundTag != "")
         {
             Debug.Log($"Background/{backgroundTag}");
@@ -178,7 +185,7 @@ public class InkScenary : MonoBehaviour
         if (leaveTag != "")
         {
             CharacterLeave(AllData.characters[leaveTag]);
-        }
+        }*/
         /*if (speakerTag != "")
         {
             string character = speakerTag;
@@ -244,8 +251,12 @@ public class InkScenary : MonoBehaviour
     }
     private void CharacterLeave(CharacterSO character)
     {
+        Debug.Log($"Выход{character.characterName}");
+        foreach (GameObject obj in AllData.charactersImages)
+        {
+            Debug.Log(obj.GetComponent<CharacterSOContainer>().characterContainer.characterName);
+        }
         GameObject charImage = AllData.charactersImages.Find(x => x.GetComponent<CharacterSOContainer>().characterContainer.characterName == character.characterName);
-        charImage.GetComponent<CharacterSOContainer>().characterContainer = null;
         charImage.SetActive(false);
     }
     IEnumerator AppearingText(string text)
