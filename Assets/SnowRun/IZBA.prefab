@@ -5676,6 +5676,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6872108815421482199}
+  - component: {fileID: 4700433160915681099}
   m_Layer: 0
   m_Name: IZBA
   m_TagString: Untagged
@@ -5717,6 +5718,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -85.855, z: 0}
+--- !u!65 &4700433160915681099
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058874365590077037}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.0379577, y: 2.797597, z: 4.1155076}
+  m_Center: {x: -0.0013192492, y: 0.18477389, z: -0.05966147}
 --- !u!1 &6077724827616556951
 GameObject:
   m_ObjectHideFlags: 0

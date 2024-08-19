@@ -20,4 +20,4 @@ MonoBehaviour:
     characterReactionImage: {fileID: 21300000, guid: aeaf3b55834f08a4a9dccdd55bf2665a, type: 3}
   - characterReactionName: Talk
     characterReactionImage: {fileID: 21300000, guid: 23eb986ab68c54c46b64c8adfbeaf2f8, type: 3}
-  characterSize: {x: 537, y: 991}
+  characterSize: {x: 627, y: 1176}

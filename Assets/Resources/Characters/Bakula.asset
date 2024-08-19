@@ -36,4 +36,4 @@ MonoBehaviour:
     characterReactionImage: {fileID: 21300000, guid: e279baa4a1f781c408a87908fb0f1472, type: 3}
   - characterReactionName: Think3
     characterReactionImage: {fileID: 21300000, guid: dfa3cd9b5719a544ba469e8377ce8af1, type: 3}
-  characterSize: {x: 623, y: 976}
+  characterSize: {x: 744, y: 1169}

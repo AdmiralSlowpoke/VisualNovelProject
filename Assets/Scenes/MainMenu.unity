@@ -2264,6 +2264,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2570399613402073513, guid: c480df971dbfe1f4b98348d9c5fb0d2e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OutFullScreen
+      objectReference: {fileID: 0}
     - target: {fileID: 2665950181029904580, guid: c480df971dbfe1f4b98348d9c5fb0d2e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2464,6 +2468,30 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3768573106293988936, guid: c480df971dbfe1f4b98348d9c5fb0d2e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3768573106293988936, guid: c480df971dbfe1f4b98348d9c5fb0d2e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3768573106293988936, guid: c480df971dbfe1f4b98348d9c5fb0d2e, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3768573106293988936, guid: c480df971dbfe1f4b98348d9c5fb0d2e, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3768573106293988936, guid: c480df971dbfe1f4b98348d9c5fb0d2e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3768573106293988936, guid: c480df971dbfe1f4b98348d9c5fb0d2e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4489781586560209383, guid: c480df971dbfe1f4b98348d9c5fb0d2e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2578,10 +2606,10 @@ RectTransform:
   m_Father: {fileID: 1225055212}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 498.6, y: -582.88}
-  m_SizeDelta: {x: 632.3, y: 798}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -522.4, y: -2.880005}
+  m_SizeDelta: {x: 632.30005, y: 798}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1876672327
 MonoBehaviour:

@@ -216,11 +216,25 @@ public class InkScenary : MonoBehaviour
                 image.GetComponent<CharacterSOContainer>().characterContainer = character;
                 image.GetComponent<RectTransform>().sizeDelta = character.characterSize;
                 image.GetComponent<Image>().sprite = character.characterMoods.Find(x=>x.characterReactionName=="IDLE").characterReactionImage;
-                if (character.characterName == "Вакула")
+                if (character.characterName == "Чуб")
                 {
                     RectTransform rect = image.GetComponent<RectTransform>();
-                    rect.localScale = new Vector3(-1, 1, 1);
-                    rect.position = new Vector3(rect.position.x + AllData.characters["Bakula"].characterSize.x, rect.position.y, rect.position.z);
+                    rect.transform.localPosition = new Vector3(-780, -903, 0);
+                }
+                else if (character.characterName == "Вакула")
+                {
+                    RectTransform rect = image.GetComponent<RectTransform>();
+                    rect.transform.localPosition = new Vector3(-840, -650, 0);
+                }
+                else if (character.characterName == "Голова")
+                {
+                    RectTransform rect = image.GetComponent<RectTransform>();
+                    rect.transform.localPosition = new Vector3(-840, -696, 0);
+                }
+                else if (character.characterName == "Дьяк")
+                {
+                    RectTransform rect = image.GetComponent<RectTransform>();
+                    rect.transform.localPosition = new Vector3(-960, -550, 0);
                 }
                 break;
             }

@@ -12,7 +12,8 @@ public class RemoveObject : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Destroy(transform.parent.gameObject);
+            // Destroy(transform.parent.gameObject);
+             Destroy(transform.gameObject);
         }
     }
 }
