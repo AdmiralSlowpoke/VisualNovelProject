@@ -193,9 +193,8 @@
 Пришёл к тебе совета попросить, ведь ты, говорят, немного чёрту сродни #speaker: Bakula
 А я готов помощи даже у черта просить #speaker: Bakula #emotion: Think
 Не надо тому за чертом ходить, у кого черт за спиной сидит #speaker: Pacuk
-Из мешка вырывается чёрт, набрасывается на Вакулу сзади #speaker: Talker #enter: Chert
-#leave: Pacuk
-Я твой друг! Все сделаю для товарища. #speaker: Chert #emotion: Funny #звук: СмехЧерта
+Из мешка вырывается чёрт, набрасывается на Вакулу сзади #speaker: Talker #leave: Pacuk
+Я твой друг! Все сделаю для товарища. #enter: Chert #speaker: Chert #emotion: Funny #звук: СмехЧерта
 Оксана будет наша! Только отдай мне свою бессмертную душу #speaker: Chert #emotion: Funny
 Изволь, за такую цену готов быть твоим! #speaker: Bakula #emotion: Talk
 У вас, я слышал, расписываются кровью; постой же, я достану в кармане гвоздь! #speaker: Bakula #emotion: Talk

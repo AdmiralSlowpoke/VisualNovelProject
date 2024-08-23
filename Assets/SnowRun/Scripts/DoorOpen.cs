@@ -9,12 +9,14 @@ public class DoorOpen : MonoBehaviour
     public Animator anim;
     [System.NonSerialized]
     public bool crowbarPicked = false;
-
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (crowbarPicked)
         {
-            anim.Play("OpenDoors");
+            Debug.Log("Enter");
+            anim.Play("OpenDoor2");
+            crowbarPicked = false;
+            this.gameObject.SetActive(false);
         }
     }
 

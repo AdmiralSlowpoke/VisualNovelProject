@@ -79,6 +79,7 @@ public class InkScenary : MonoBehaviour
                 Choice choice = story.currentChoices[i];
                 Button button = Instantiate(prefabButton) as Button;
                 button.transform.SetParent(buttonLocation.transform);
+                //
                 button.GetComponentInChildren<Text>().text = choice.text;
                 button.onClick.AddListener(delegate
                 {
@@ -127,6 +128,7 @@ public class InkScenary : MonoBehaviour
                 case string a when a.Contains("speaker"):
                     speakerTag = tag.Replace("speaker: ", "");
                     AllData.charNameText.text = AllData.characters[speakerTag].characterName;
+                    if (AllData.characters[speakerTag].characterName== "Рассказчик") AllData.charNameText.text = "";
                     //Debug.Log($"Персонаж {speakerTag}");
                     break;
                 case string a when a.Contains("emotion"):

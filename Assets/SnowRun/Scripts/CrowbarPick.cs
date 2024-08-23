@@ -6,13 +6,28 @@ public class CrowbarPick : MonoBehaviour
 {
 
     public DoorOpen open;
-
-    private void OnTriggerStay(Collider other)
+    private bool inZone = false;
+    private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E)&&inZone)
         {
             open.crowbarPicked = true;
             Destroy(this.gameObject);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<CharacterMovement>() != null)
+        {
+            inZone = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.GetComponent<CharacterMovement>() != null)
+        {
+            inZone = false;
         }
     }
 }
