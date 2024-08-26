@@ -70,3 +70,15 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+Assets/InkScenary.cs
+Assets/Scenes/SampleScene.unity
+Assets/Scenes/SampleScene.unity
+Assets/Resources/Button.prefab
+Assets/SaveLoadScript.cs
+Assets/Scenes/MainMenu.unity
+Assets/Scripts/CharacterSO.cs
+Assets/Scripts/EscMenu.cs
+Assets/Scripts/MainMenu.cs
+Assets/Scripts/ResolutionSettings.cs
+Assets/Scripts/SettingsScript.cs
+Assets/Storyboard/Новелла (2).ink

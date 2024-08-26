@@ -49,6 +49,8 @@ public class ResolutionSettings : MonoBehaviour
     {
         Resolution resolution = filteredResolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, true);
+        PlayerPrefs.SetInt("Width", resolution.width);
+        PlayerPrefs.SetInt("Height", resolution.height);
     }
 
     // Update is called once per frame
