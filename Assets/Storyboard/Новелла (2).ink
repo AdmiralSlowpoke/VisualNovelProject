@@ -18,7 +18,6 @@
 Иду! Иду! #speaker: Chub
 Ишь, как высветлило ... #speaker: Chub
 #leave: Chub
-#leave: Sverbiguz
 #звук: скрипдвери
 //ВТОРАЯ СЦЕНА
 

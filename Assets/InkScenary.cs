@@ -4,10 +4,16 @@ using UnityEngine;
 using Ink.Runtime;
 using UnityEngine.UI;
 using TMPro;
+using System;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using Ink;
+using System.Linq;
 
 public class InkScenary : MonoBehaviour
 {
     // Start is called before the first frame update
+    public bool debugMode = false;
     public CharacterSOContainer left, right;
     public Button prefabButton;
     public GameObject buttonLocation;
@@ -29,6 +35,65 @@ public class InkScenary : MonoBehaviour
         public static AudioSource music;
         public static AudioSource sfx;
 
+    }
+    public void ResetAllData()
+    {
+        AllData.characters = new Dictionary<string, CharacterSO>();
+        AllData.backgrounds = new Dictionary<string, BackGroundSO>();
+        AllData.clickWait = false;
+        AllData.charNameText = null;
+        AllData.charText = null;
+        AllData.charactersImages = new List<GameObject>();
+        AllData.backgroundImage = null;
+        AllData.music = null;
+        AllData.sfx = null;
+    }
+    public void SaveData()
+    {
+        StopAllCoroutines();
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath
+    + "/MySaveData.dat");
+       
+        SavedData data = new SavedData();
+        if (AllData.charactersImages[0].activeSelf)
+        {
+            data.firstCharacter = AllData.charactersImages[0].GetComponent<CharacterSOContainer>().characterContainer.name;
+        }
+        else data.firstCharacter = "null";
+        if (AllData.charactersImages[1].activeSelf)
+        {
+            data.secondCharacter = AllData.charactersImages[1].GetComponent<CharacterSOContainer>().characterContainer.name;
+        }
+        else data.secondCharacter = "null";
+        data.backgroundImage = AllData.backgroundImage.sprite.name;
+        data.storyState = story.state.ToJson();
+        bf.Serialize(file, data);
+        file.Close();
+        PlayerPrefs.SetInt("Saved", 1);
+    }
+    public void LoadSavedData()
+    {
+        if (File.Exists(Application.persistentDataPath + "/MySaveData.dat"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/MySaveData.dat", FileMode.Open);
+            SavedData data = (SavedData)bf.Deserialize(file);
+            file.Close();
+            if (data.firstCharacter != "null")
+            {
+                CharacterEnter(AllData.characters[data.firstCharacter]);
+            }
+            if (data.secondCharacter != "null")
+            {
+                CharacterEnter(AllData.characters[data.secondCharacter]);
+            }
+            StopAllCoroutines();
+            AllData.backgroundImage.sprite = Resources.Load<Sprite>($"Backgrounds/{data.backgroundImage}");
+            story = new Story(text.text);
+            story.state.LoadJson(data.storyState);
+            StartCoroutine(AppearingText(story.currentText));
+        }
     }
     public void LoadData()
     {
@@ -56,8 +121,14 @@ public class InkScenary : MonoBehaviour
     }
     void Start()
     {
+        EscMenu.GameIsPaused = false;
+        Time.timeScale = 1f;
         LoadData();
-        LoadStory();
+        if (PlayerPrefs.GetInt("Saved") == 1)
+        {
+            LoadSavedData();
+        }
+        else LoadStory();
     }
     public void LoadStory()
     {
@@ -67,8 +138,8 @@ public class InkScenary : MonoBehaviour
     }
     public void Action()
     {
-        
         string text = story.Continue();
+        Debug.Log(text);
         text = text.Trim();
         StartCoroutine(AppearingText(text));
         if (story.currentTags.Count > 0) HandleTags(story.currentTags);
@@ -79,8 +150,9 @@ public class InkScenary : MonoBehaviour
                 Choice choice = story.currentChoices[i];
                 Button button = Instantiate(prefabButton) as Button;
                 button.transform.SetParent(buttonLocation.transform);
+                button.GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.width, Screen.height*0.1f);
                 //
-                button.GetComponentInChildren<Text>().text = choice.text;
+                button.GetComponentInChildren<TMP_Text>().text = choice.text;
                 button.onClick.AddListener(delegate
                 {
                     OnClickChoiseButton(choice);
@@ -90,6 +162,10 @@ public class InkScenary : MonoBehaviour
     }
     void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Debug.Log($"EscMenuPaused: {EscMenu.GameIsPaused} storyCanContinue: {story.canContinue} textRunning: {textRunning}");
+        }
         if (Input.GetMouseButtonDown(0) && !EscMenu.GameIsPaused && story.canContinue && !textRunning) Action();
         else if (Input.GetMouseButtonDown(0) && textRunning)
         {
@@ -100,7 +176,6 @@ public class InkScenary : MonoBehaviour
     }
     void OnClickChoiseButton(Choice choice)
     {
-        //Camera.main.GetComponent<AudioSource>().PlayOneShot(clickSound);
         story.ChooseChoiceIndex(choice.index);
         DeleteButtons();
         AllData.charText.text = choice.text;
@@ -129,27 +204,27 @@ public class InkScenary : MonoBehaviour
                     speakerTag = tag.Replace("speaker: ", "");
                     AllData.charNameText.text = AllData.characters[speakerTag].characterName;
                     if (AllData.characters[speakerTag].characterName== "Рассказчик") AllData.charNameText.text = "";
-                    //Debug.Log($"Персонаж {speakerTag}");
+                    if (debugMode) Debug.Log($"Персонаж {speakerTag}");
                     break;
                 case string a when a.Contains("emotion"):
                     emotionTag = tag.Replace("emotion: ", "");
                     CharacterChangeMood(AllData.characters[speakerTag], emotionTag);
-                    //Debug.Log($"Эмоция {emotionTag}");
+                    if (debugMode) Debug.Log($"Эмоция {emotionTag}");
                     break;
                 case string a when a.Contains("звук"):
                     soundTag = tag.Replace("звук: ","");
                     AllData.sfx.PlayOneShot(Resources.Load<AudioClip>($"Audio/{soundTag}"));
-                    //Debug.Log($"Звук {soundTag}");
+                    if (debugMode) Debug.Log($"Звук {soundTag}");
                     break;
                 case string a when a.Contains("enter"):
                     enterTag= tag.Replace("enter: ", "");
                     CharacterEnter(AllData.characters[enterTag]);
-                    //Debug.Log($"Вошел {enterTag}");
+                    if (debugMode) Debug.Log($"Вошел {enterTag}");
                     break;
                 case string a when a.Contains("leave"):
                     leaveTag = tag.Replace("leave: ", "");
                     CharacterLeave(AllData.characters[leaveTag]);
-                    Debug.Log($"Вышел {leaveTag}");
+                    if (debugMode) Debug.Log($"Вышел {leaveTag}");
                     break;
                 case string a when a.Contains("фон"):
                     backgroundTag = tag.Replace("фон: ", "");
@@ -158,54 +233,6 @@ public class InkScenary : MonoBehaviour
 
             }
         }
-        /*
-        if (backgroundTag != "")
-        {
-            Debug.Log($"Background/{backgroundTag}");
-            AllData.backgroundImage.sprite = Resources.Load<Sprite>($"Backgrounds/{backgroundTag}");
-        }
-        if (soundTag != "")
-        {
-            Debug.Log($"Audio/{soundTag}");
-            Debug.Log(Resources.Load<AudioClip>($"Audio/{soundTag}"));
-            AllData.sfx.PlayOneShot(Resources.Load<AudioClip>($"Audio/{soundTag}"));
-        }
-        if (enterTag != "")
-        {
-            CharacterEnter(AllData.characters[enterTag]);
-        }
-        if (speakerTag != "")
-        {
-            AllData.charNameText.text = AllData.characters[speakerTag].characterName;
-            //CharacterSpeak(AllData.characters[speakerTag]);
-        }
-        if (emotionTag != "")
-        {
-            Debug.Log($"{speakerTag}:{emotionTag}");
-            CharacterChangeMood(AllData.characters[speakerTag], emotionTag);
-        }
-        if (leaveTag != "")
-        {
-            CharacterLeave(AllData.characters[leaveTag]);
-        }*/
-        /*if (speakerTag != "")
-        {
-            string character = speakerTag;
-            AllData.charNameText.text = AllData.characters[character].characterName;
-            CharacterSO characterSO= AllData.characters[character];
-            CharacterMood charMood = emotionTag != "" ? characterSO.characterMoods.Find(x => x.characterReactionName == emotionTag) : characterSO.characterMoods.Find(x => x.characterReactionName == "IDLE");
-            if (charMood != null)
-            {
-                Debug.Log(AllData.characters[character].characterSize);
-                AllData.charactersImages[0].SetActive(true);
-                AllData.charactersImages[0].GetComponent<Image>().sprite = charMood.characterReactionImage;
-                AllData.charactersImages[0].GetComponent<RectTransform>().sizeDelta = AllData.characters[character].characterSize;
-            }
-            else
-            {
-                AllData.charactersImages[0].SetActive(false);
-            }
-        }*/
     }
 
     private void CharacterEnter(CharacterSO character)
@@ -267,10 +294,10 @@ public class InkScenary : MonoBehaviour
     }
     private void CharacterLeave(CharacterSO character)
     {
-        Debug.Log($"Выход{character.characterName}");
+        if(debugMode)Debug.Log($"Выход{character.characterName}");
         foreach (GameObject obj in AllData.charactersImages)
         {
-            Debug.Log(obj.GetComponent<CharacterSOContainer>().characterContainer.characterName);
+            if (debugMode) Debug.Log(obj.GetComponent<CharacterSOContainer>().characterContainer.characterName);
         }
         GameObject charImage = AllData.charactersImages.Find(x => x.GetComponent<CharacterSOContainer>().characterContainer.characterName == character.characterName);
         charImage.SetActive(false);
@@ -288,4 +315,17 @@ public class InkScenary : MonoBehaviour
         textRunning = false;
     }
 
+}
+/*
+ * Нужно сохранять следующую инфу чтобы ничего не сломалось
+ * Спрайты и инфу внутри них
+ * Текущий текст либо текущую позицию
+ * Задний фон
+ */
+[Serializable]
+public class SavedData
+{
+    public string firstCharacter, secondCharacter;
+    public string backgroundImage;
+    public string storyState;
 }

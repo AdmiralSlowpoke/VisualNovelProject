@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class EscMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
+    public InkScenary save;
     bool IsOpen = false;
     int variantExit;
 
@@ -129,10 +130,16 @@ public class EscMenu : MonoBehaviour
     {
         if(variantExit == 1)
         {
-            SceneManager.LoadScene("MainMenu");
+            save.SaveData();
+            save.StopAllCoroutines();
+            save.ResetAllData();
+            SceneManager.LoadScene("MainMenu",LoadSceneMode.Single);
         }
         else
         {
+            save.SaveData();
+            save.StopAllCoroutines();
+            save.ResetAllData();
             Application.Quit();
             Debug.Log("Игра закрыта");
         }
