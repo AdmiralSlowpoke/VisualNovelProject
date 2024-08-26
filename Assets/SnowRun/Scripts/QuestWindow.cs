@@ -4,19 +4,10 @@ using UnityEngine;
 
 public class QuestWindow : MonoBehaviour
 {
-    public GameObject questWindow;
-    public Animator animator;
-
+    public Animator a;
     private void Start()
     {
-        animator = GetComponent<Animator>();
-        StartCoroutine(ShowQuestWindow());
-
+        a.Play("Fade");
     }
-    IEnumerator ShowQuestWindow()
-    {
-        animator.SetBool("Faded", false);
-        yield return new WaitForSeconds(10f);
-        
-    }
+  
 }

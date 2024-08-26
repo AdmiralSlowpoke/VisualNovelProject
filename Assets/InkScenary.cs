@@ -4,10 +4,12 @@ using UnityEngine;
 using Ink.Runtime;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class InkScenary : MonoBehaviour
 {
     // Start is called before the first frame update
+    public Animator anim;
     public CharacterSOContainer left, right;
     public Button prefabButton;
     public GameObject buttonLocation;
@@ -121,7 +123,9 @@ public class InkScenary : MonoBehaviour
         string enterTag = "";
         string leaveTag = "";
         string backgroundTag = "";
-        foreach(string tag in currentTags)
+        string transitTag = "";
+        string gameTag = "";
+        foreach (string tag in currentTags)
         {
             switch (tag)
             {
@@ -154,6 +158,14 @@ public class InkScenary : MonoBehaviour
                 case string a when a.Contains("фон"):
                     backgroundTag = tag.Replace("фон: ", "");
                     AllData.backgroundImage.sprite = Resources.Load<Sprite>($"Backgrounds/{backgroundTag}");
+                    break;
+                case string a when a.Contains("вставка"):
+                    gameTag = tag.Replace("вставка", "");
+                    anim.SetTrigger("AnimIsPlay");
+                    SceneManager.LoadScene("SnowRun");
+                    break;
+                case string a when a.Contains("переход"):
+                    anim.SetTrigger("AnimIsPlay");
                     break;
 
             }
@@ -287,5 +299,6 @@ public class InkScenary : MonoBehaviour
         }
         textRunning = false;
     }
+   
 
 }
