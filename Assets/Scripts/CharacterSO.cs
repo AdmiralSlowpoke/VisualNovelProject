@@ -1,11 +1,9 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 [CreateAssetMenu(fileName ="Character",menuName ="VisualNovel/Character",order =2)]
-[Serializable]
 public class CharacterSO : ScriptableObject
 {
     public string characterName;

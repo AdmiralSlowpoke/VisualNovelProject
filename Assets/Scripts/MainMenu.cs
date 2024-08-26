@@ -17,21 +17,10 @@ public class MainMenu : MonoBehaviour
             canvasSettings.SetActive(false);
         }
     }
-    public void ClickOnNewGame()
-    {
-        PlayerPrefs.SetInt("Saved", 0);
-        SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
-    }
-    public void ClickOnLoad()
-    {
-        if (PlayerPrefs.GetInt("Saved") != 0)
-        {
-            SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
-        }
-    }
+
     public void GoToScene(string sceneName) 
     {
-        SceneManager.LoadScene(sceneName,LoadSceneMode.Single);
+        SceneManager.LoadScene(sceneName);
         
     }
     public void QuiteApp() 
