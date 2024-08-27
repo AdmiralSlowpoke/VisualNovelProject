@@ -165,10 +165,6 @@ public class InkScenary : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Debug.Log($"EscMenuPaused: {EscMenu.GameIsPaused} storyCanContinue: {story.canContinue} textRunning: {textRunning}");
-        }
         if (Input.GetMouseButtonDown(0) && !EscMenu.GameIsPaused && story.canContinue && !textRunning) Action();
         else if (Input.GetMouseButtonDown(0) && textRunning)
         {

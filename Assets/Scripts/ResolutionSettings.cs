@@ -5,7 +5,7 @@ using TMPro;
 
 public class ResolutionSettings : MonoBehaviour
 {
-    [SerializeField] private TMP_Dropdown dropdownResolution;
+    [SerializeField] public TMP_Dropdown dropdownResolution;
 
     private Resolution[] resolutions;
     private List<Resolution> filteredResolutions;
@@ -43,6 +43,23 @@ public class ResolutionSettings : MonoBehaviour
         dropdownResolution.AddOptions(options);
         dropdownResolution.value = currentResolutionIndex;
         dropdownResolution.RefreshShownValue();
+        if (PlayerPrefs.HasKey("ResolutionIndex"))
+        {
+            dropdownResolution.value = PlayerPrefs.GetInt("ResolutionIndex");
+        }
+        if (PlayerPrefs.HasKey("Width"))
+        {
+            Screen.SetResolution(PlayerPrefs.GetInt("Width"), PlayerPrefs.GetInt("Height"), true);
+        }
+        if (PlayerPrefs.HasKey("FullScreen"))
+        {
+            if (PlayerPrefs.GetInt("FullScreen") == 1)
+            {
+                Screen.fullScreen = true;
+            }
+            else
+                Screen.fullScreen = false;
+        }
     }
 
     public void SetResolution(int resolutionIndex)
@@ -51,6 +68,7 @@ public class ResolutionSettings : MonoBehaviour
         Screen.SetResolution(resolution.width, resolution.height, true);
         PlayerPrefs.SetInt("Width", resolution.width);
         PlayerPrefs.SetInt("Height", resolution.height);
+        PlayerPrefs.SetInt("ResolutionIndex", resolutionIndex);
     }
 
     // Update is called once per frame

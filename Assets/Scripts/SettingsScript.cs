@@ -3,34 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SettingsScript : MonoBehaviour
 {
     public AudioMixer audioMixer;
+    public Slider volumeSlider, textSlider;
     public static float textSpeed=0.03f;
     private void Start()
     {
-        
-        if (PlayerPrefs.HasKey("Width"))
-        {
-            Screen.SetResolution(PlayerPrefs.GetInt("Width"), PlayerPrefs.GetInt("Height"),true);
-        }
-        if (PlayerPrefs.HasKey("FullScreen"))
-        {
-            if (PlayerPrefs.GetInt("FullScreen") == 1)
-            {
-                Screen.fullScreen = true;
-            }
-            else
-                Screen.fullScreen = false;
-        }
+
         if (PlayerPrefs.HasKey("MasterVolume"))
         {
             audioMixer.SetFloat("MasterVolume",PlayerPrefs.GetFloat("MasterVolume"));
+            volumeSlider.value = PlayerPrefs.GetFloat("MasterVolume");
         }
         if (PlayerPrefs.HasKey("TextSpeed"))
         {
             textSpeed = PlayerPrefs.GetFloat("TextSpeed");
+            Debug.Log(textSpeed);
+            textSlider.value = PlayerPrefs.GetFloat("TextSlider");
         }
     }
     public void SetFullScreen() 
@@ -47,7 +39,6 @@ public class SettingsScript : MonoBehaviour
 
     public void SetVolume(float volume) 
     {
-        Debug.Log(volume);
         audioMixer.SetFloat("MasterVolume", volume);
         PlayerPrefs.SetFloat("MasterVolume", volume);
     }
@@ -55,6 +46,7 @@ public class SettingsScript : MonoBehaviour
     {
         textSpeed = Mathf.Abs(speed);
         PlayerPrefs.SetFloat("TextSpeed", textSpeed);
+        PlayerPrefs.SetFloat("TextSlider", speed);
     }
     
   
