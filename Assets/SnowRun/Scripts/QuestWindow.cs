@@ -1,22 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class QuestWindow : MonoBehaviour
 {
-    public GameObject questWindow;
-    public Animator animator;
+
+    public GameObject QuestWindowPrefab;
+    public GameObject MoveHelpText;
+    public Animator animation;
 
     private void Start()
     {
-        animator = GetComponent<Animator>();
-        StartCoroutine(ShowQuestWindow());
+        QuestWindowPrefab.SetActive(false);
+        StartCoroutine("ShowMoveHelpText");
 
     }
-    IEnumerator ShowQuestWindow()
+    private void OnTriggerEnter(Collider other)
     {
-        animator.SetBool("Faded", false);
-        yield return new WaitForSeconds(10f);
+        QuestWindowPrefab.SetActive(true);
+        animation.SetTrigger("TaskOn");
+        StartCoroutine("Invis");
+
+    }
+    IEnumerator Invis()
+    {
         
+        
+        yield return new WaitForSeconds(4f);
+        QuestWindowPrefab.SetActive(false);
+        Destroy(this.gameObject);
+    }
+
+    IEnumerator ShowMoveHelpText()
+    {
+        
+        yield return new WaitForSeconds(4f);
+        MoveHelpText.SetActive(false);
     }
 }

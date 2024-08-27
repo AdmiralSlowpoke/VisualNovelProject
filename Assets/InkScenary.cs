@@ -9,10 +9,12 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using Ink;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class InkScenary : MonoBehaviour
 {
     // Start is called before the first frame update
+    public Animator animator;
     public bool debugMode = false;
     public CharacterSOContainer left, right;
     public Button prefabButton;
@@ -129,6 +131,7 @@ public class InkScenary : MonoBehaviour
             LoadSavedData();
         }
         else LoadStory();
+     
     }
     public void LoadStory()
     {
@@ -195,8 +198,10 @@ public class InkScenary : MonoBehaviour
         string soundTag = "";
         string enterTag = "";
         string leaveTag = "";
+        string gameTag = "";
         string backgroundTag = "";
-        foreach(string tag in currentTags)
+        string endTag = "";
+        foreach (string tag in currentTags)
         {
             switch (tag)
             {
@@ -229,6 +234,16 @@ public class InkScenary : MonoBehaviour
                 case string a when a.Contains("фон"):
                     backgroundTag = tag.Replace("фон: ", "");
                     AllData.backgroundImage.sprite = Resources.Load<Sprite>($"Backgrounds/{backgroundTag}");
+                    break;
+                case string a when a.Contains("вставка"):
+                    gameTag = tag.Replace("вставка:", "");
+                    SaveData();
+                    ResetAllData();
+                    SceneManager.LoadScene("SnowRun");
+                    break;
+                case string a when a.Contains("конец"):
+                    endTag = tag.Replace("конец:", "");
+                    SceneManager.LoadScene("MainMenu");
                     break;
 
             }
