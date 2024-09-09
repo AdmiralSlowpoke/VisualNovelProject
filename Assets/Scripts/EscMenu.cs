@@ -8,7 +8,7 @@ public class EscMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
     public InkScenary save;
-    bool IsOpen = false;
+    public static bool IsOpen = false;
     int variantExit;
 
     public GameObject pauseUI;
@@ -45,7 +45,7 @@ public class EscMenu : MonoBehaviour
             {
                 dict.SetActive(false);
                 IsOpen = false;
-                Time.timeScale = 1f;
+                
             }
             if(settings.activeSelf == true)
             {
@@ -64,13 +64,13 @@ public class EscMenu : MonoBehaviour
             {
                 dict.SetActive(true);
                 IsOpen = true;
-                Time.timeScale = 0f;
+                
             }
             else
             {
                 dict.SetActive(false);
                 IsOpen = false;
-                Time.timeScale = 1f;
+              
             }
         }
        
@@ -94,12 +94,21 @@ public class EscMenu : MonoBehaviour
     {
         if(dict.activeSelf == false)
         {
+            IsOpen = true;
             dict.SetActive(true);
         }
         else
         {
+            IsOpen = false;
             dict.SetActive(false);
+           
         }
+    }
+    public void OnClickEscDict()
+    {
+        IsOpen = false;
+        dict.SetActive(false);
+      
     }
 
     public void OnClickSettings()
@@ -113,18 +122,13 @@ public class EscMenu : MonoBehaviour
             settings.SetActive(false);
         }
     }
-    public void OnClickLoad()
+    public void OnClickSave()
     {
-        if(load.activeSelf == false)
-        {
-            load.SetActive(true);
-        }
-        else
-        {
-            load.SetActive(false);
-        }
-      
+        Time.timeScale = 1f;
+        GameIsPaused = false;
+        pauseUI.SetActive(false);
     }
+   
 
     public void AgreeButtonMain()
     {

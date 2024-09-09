@@ -14,6 +14,7 @@ using UnityEngine.SceneManagement;
 public class InkScenary : MonoBehaviour
 {
     // Start is called before the first frame update
+    public GameObject defeatScreen;
     public Animator animator;
     public bool debugMode = false;
     public CharacterSOContainer left, right;
@@ -123,6 +124,7 @@ public class InkScenary : MonoBehaviour
     }
     void Start()
     {
+        defeatScreen.SetActive(false);
         EscMenu.GameIsPaused = false;
         Time.timeScale = 1f;
         LoadData();
@@ -165,7 +167,7 @@ public class InkScenary : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !EscMenu.GameIsPaused && story.canContinue && !textRunning) Action();
+        if (Input.GetMouseButtonDown(0) && !EscMenu.IsOpen && !EscMenu.GameIsPaused && story.canContinue && !textRunning) Action();
         else if (Input.GetMouseButtonDown(0) && textRunning)
         {
             StopAllCoroutines();
@@ -197,6 +199,8 @@ public class InkScenary : MonoBehaviour
         string gameTag = "";
         string backgroundTag = "";
         string endTag = "";
+        string gameOverTag = "";
+        string gameoverScreenTag = "";
         foreach (string tag in currentTags)
         {
             switch (tag)
@@ -239,7 +243,18 @@ public class InkScenary : MonoBehaviour
                     break;
                 case string a when a.Contains("конец"):
                     endTag = tag.Replace("конец:", "");
+                    SaveData();
+                    ResetAllData();
                     SceneManager.LoadScene("MainMenu");
+                    break;
+                case string a when a.Contains("проигрыш"):
+                    gameOverTag = tag.Replace("проигрыш:", "");
+                    defeatScreen.SetActive(false);
+                    LoadSavedData();
+                    break;
+                case string a when a.Contains("gameoverScreen"):
+                    gameoverScreenTag = tag.Replace("gameoverScreen:", "");
+                    defeatScreen.SetActive(true);
                     break;
 
             }

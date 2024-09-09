@@ -7,6 +7,7 @@ public class QuestWindow : MonoBehaviour
 {
 
     public GameObject QuestWindowPrefab;
+    public TextMeshProUGUI Text;
     public GameObject MoveHelpText;
     public Animator animation;
 
@@ -18,24 +19,38 @@ public class QuestWindow : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        QuestWindowPrefab.SetActive(true);
-        animation.SetTrigger("TaskOn");
-        StartCoroutine("Invis");
+        if(other.gameObject.CompareTag("findCrowbar") )
+        {
+            QuestWindowPrefab.SetActive(true);
+            animation.SetTrigger("TaskOn");
+            StartCoroutine("Invis");
+            Destroy(other);
+        }
+        else if(other.gameObject.CompareTag("findDevil") )
+        {
+            Text.text = "Найдите нечистого";
+            RectTransform rect = Text.GetComponent<RectTransform>();
+            rect.transform.localPosition = new Vector3(218,0);
+            QuestWindowPrefab.SetActive(true);
+            animation.SetTrigger("TaskOn");
+            StartCoroutine("Invis");
+            Destroy(other);
+        }
+       
 
     }
     IEnumerator Invis()
     {
         
-        
         yield return new WaitForSeconds(4f);
         QuestWindowPrefab.SetActive(false);
-        Destroy(this.gameObject);
+       
     }
 
     IEnumerator ShowMoveHelpText()
     {
         
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(10f);
         MoveHelpText.SetActive(false);
     }
 }
