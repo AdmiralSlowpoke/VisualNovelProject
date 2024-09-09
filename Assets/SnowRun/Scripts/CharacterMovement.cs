@@ -18,6 +18,7 @@ public class CharacterMovement : MonoBehaviour
     public LayerMask groundMask;
     public AudioSource source;
     public List<AudioClip> clips;
+    public GameObject hintText;
     private bool walkingPlaying = false;
     Vector3 velocity;
     bool isGrounded;
@@ -37,7 +38,22 @@ public class CharacterMovement : MonoBehaviour
             if (!source.isPlaying)
             {
                 source.PlayOneShot(clips[Random.Range(0, clips.Count)]);
+                source.pitch = 2;
+                
             }
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name.Contains("Invisible")) {
+            hintText.SetActive(true);
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.name.Contains("Invisible"))
+        {
+            hintText.SetActive(false);
         }
     }
 }
