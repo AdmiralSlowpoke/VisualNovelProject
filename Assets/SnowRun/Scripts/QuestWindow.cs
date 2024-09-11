@@ -30,7 +30,7 @@ public class QuestWindow : MonoBehaviour
         {
             Text.text = "Найдите нечистого";
             RectTransform rect = Text.GetComponent<RectTransform>();
-            rect.transform.localPosition = new Vector3(218,0);
+            rect.transform.localPosition = new Vector3(10,5);
             QuestWindowPrefab.SetActive(true);
             animation.SetTrigger("TaskOn");
             StartCoroutine("Invis");
