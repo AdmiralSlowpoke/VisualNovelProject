@@ -8,5 +8,5 @@ public class BackGroundSO : ScriptableObject
     public string backgroundName;
     public AudioClip backgroundMusic;
     public Sprite backgroundImage;
-    //fdsffsd
+    
 }
