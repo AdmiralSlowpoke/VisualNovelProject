@@ -16,6 +16,7 @@ public class CharacterMovement : MonoBehaviour
     public Transform groundcheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
+    public GameObject noWay;
     public AudioSource source;
     public List<AudioClip> clips;
     private bool walkingPlaying = false;
@@ -38,6 +39,20 @@ public class CharacterMovement : MonoBehaviour
             {
                 source.PlayOneShot(clips[Random.Range(0, clips.Count)]);
             }
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name.Contains("Wall"))
+        {
+            noWay.SetActive(true);
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.name.Contains("Wall"))
+        {
+            noWay.SetActive(false);
         }
     }
 }
